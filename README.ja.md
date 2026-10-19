@@ -1,3 +1,5 @@
+**Codex／ChatGPT対応：** [導入・接続・検証手順](docs/CODEX.md)を追加しています。
+
 <div align="center">
 
 <img src="docs/assets/banner-ja.jpg" alt="Audio Studio MCP：ローカル AI で BGM と効果音を、Claude Code とすべての MCP クライアントへ" width="820">

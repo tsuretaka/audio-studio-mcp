@@ -6,7 +6,7 @@
 #   2. clones the official Stable Audio 3 runtime into vendor/ at a pinned commit
 #   3. creates .venv/ and installs dependencies (uv sync --extra mlx)
 #   4. downloads model weights from Hugging Face (medium: ~5.9 GB)
-#   5. prints the command that registers the server with Claude Code
+#   5. prints registration commands for Codex and other MCP clients
 #
 # Usage:
 #   ./install.sh                     # medium model (recommended)
@@ -130,7 +130,13 @@ fi
 BIN="$REPO_DIR/.venv/bin/audio-studio-mcp"
 ENV_ARG=""
 [[ -n "${AUDIO_STUDIO_SA3_DIR:-}" ]] && ENV_ARG="-e \"AUDIO_STUDIO_SA3_DIR=$UPSTREAM_DIR\" "
-printf '\n%s%s✓ Installed.%s Register it with Claude Code:\n\n' "$B" "$G" "$N"
+CODEX_ENV_ARG=""
+[[ -n "${AUDIO_STUDIO_SA3_DIR:-}" ]] && CODEX_ENV_ARG="--env \"AUDIO_STUDIO_SA3_DIR=$UPSTREAM_DIR\" "
+printf '\n%s%s✓ Installed.%s Register it with Codex:\n\n' "$B" "$G" "$N"
+printf '  codex mcp add audio-studio %s-- "%s"\n\n' "$CODEX_ENV_ARG" "$BIN"
+printf 'Set tool_timeout_sec = 900 under [mcp_servers.audio-studio] in ~/.codex/config.toml.\n'
+printf 'See docs/CODEX.md for setup, verification, and ChatGPT connection options.\n'
+printf '\nClaude Code:\n\n'
 printf '  claude mcp add --scope user audio-studio %s-- "%s"\n\n' "$ENV_ARG" "$BIN"
 printf 'Other MCP clients (Claude Desktop, Cursor, …): command = %s\n' "$BIN"
 printf 'Test it:  "%s/.venv/bin/python" "%s/scripts/smoke_test.py"\n' "$REPO_DIR" "$REPO_DIR"

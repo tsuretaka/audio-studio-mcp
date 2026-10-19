@@ -28,3 +28,6 @@ outputs/
 
 # Showcase samples for the GitHub Pages demo
 !docs/samples/*.mp3
+
+# Machine-specific acceptance logs and operational notes
+local/

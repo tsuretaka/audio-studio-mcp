@@ -1,3 +1,5 @@
+**Codex / ChatGPT:** See [setup and verification](docs/CODEX.md).
+
 <div align="center">
 
 <img src="docs/assets/banner-en.jpg" alt="Audio Studio MCP: local AI music and sound effects for Claude Code and any MCP client" width="820">
